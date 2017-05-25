@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Django,Python,CBV,FBV," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="一天太长，一生太短">
-<meta property="og:type" content="website">
-<meta property="og:title" content="浮生若梦">
-<meta property="og:url" content="http://woolfwen.com/archives/2004/06/index.html">
+<meta name="description" content="最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django CBV vs FBV">
+<meta property="og:url" content="http://woolfwen.com/2016/09/20/Django-CBV-vs-FBV/index.html">
 <meta property="og:site_name" content="浮生若梦">
-<meta property="og:description" content="一天太长，一生太短">
+<meta property="og:description" content="最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。">
+<meta property="og:updated_time" content="2017-02-21T01:56:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浮生若梦">
-<meta name="twitter:description" content="一天太长，一生太短">
+<meta name="twitter:title" content="Django CBV vs FBV">
+<meta name="twitter:description" content="最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。">
 
 
 
@@ -115,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://woolfwen.com/archives/2004/06/"/>
+  <link rel="canonical" href="http://woolfwen.com/2016/09/20/Django-CBV-vs-FBV/"/>
 
-  <title> 归档 | 浮生若梦 </title>
+  <title> Django CBV vs FBV | 浮生若梦 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +139,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,66 +250,163 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 4 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django CBV vs FBV
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-20T11:51:55-07:00" content="2016-09-20">
+              2016-09-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。<br><a id="more"></a></p>
+<p>##FBV</p>
+<p>views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.views.decorators.http <span class="keyword">import</span> require_GET</div><div class="line"></div><div class="line"><span class="meta">@require_GET</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world."</span>)</div></pre></td></tr></table></figure>
+<p>urls.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">    url(<span class="string">r'^/'</span>, views.index, name=<span class="string">'home'</span>),</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>以上就是Django中最简单，最朴素的一个 基于Function 的 view实现。逻辑清晰、简单、直接，在urls的设置中直接指明访问<a href="http://ip/" target="_blank" rel="external">http://ip/</a> 时，调用views.index Function去处理请求。这种方式，从认知、学习过程来说也是最容易理解的(Django Tutorial 主打的也是 FBV )，而且，Django 1.3 ver 前，Django 缺省提供的 Generic View 全部都是 FBV。也就是说，之前官方还是觉得FBV比较好。然而，Django 设计目标是奔着做“大”工程去的，也的确有很多Django实现的大工程。工程规模大了以后，设计自然而然就又使用上OOD了，虽然没有银弹，但是OOD还是能降低复杂度，提高代码复用性和后期维护性。Django也顺应潮流将Generic View更换成了CBV。</p>
+<p>##CBV</p>
+<p>来看看 CBV的 hello </p>
+<p>views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyView</span><span class="params">(View)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="comment"># &lt;view logic&gt;</span></div><div class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'result'</span>)</div></pre></td></tr></table></figure>
+<p>urls.py</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">    url(<span class="string">r'^/'</span>, views.MyView.as_view(), name=<span class="string">'home'</span>),</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>CBV过程可以看成是FBV过程的抽象化、对象化。他需要最基本的三个类View，ContextMixin，TemplateResponseMixin</p>
+<p>对应FBV的三个步骤：</p>
+<p>step1. View类提供类方法as_view(),用于调用dipatch()，根据request类型分发给get，post…等对应方法处理。</p>
+<p><a href="https://github.com/brack3t/django-braces" target="_blank" rel="external">https://github.com/brack3t/django-braces</a></p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2004">2004</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/CBV/" rel="tag">#CBV</a>
+          
+            <a href="/tags/FBV/" rel="tag">#FBV</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/11/16/F31安装Win8-1/" rel="next" title="联想F31，老机换新颜--Win8.1安装手记">
+                <i class="fa fa-chevron-left"></i> 联想F31，老机换新颜--Win8.1安装手记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2004/06/26/IIS5整合JBoss/" itemprop="url">
-              
-                <span itemprop="name">IIS整合JBoss</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2004-06-26T18:37:00-07:00"
-              content="2004-06-26" >
-          06-26
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -316,6 +414,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -335,8 +437,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -393,6 +504,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -489,11 +611,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   

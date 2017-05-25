@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://woolfwen.com/2016/09/20/Django-CBV-vs-FBV/</loc>
+    
+    <lastmod>2017-02-21T01:56:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://woolfwen.com/2004/06/26/IIS5%E6%95%B4%E5%90%88JBoss/</loc>
     
     <lastmod>2016-11-29T08:49:34.000Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://woolfwen.com/404.html</loc>
     
     <lastmod>2016-11-27T20:03:15.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://woolfwen.com/2016/09/08/hello-world/</loc>
-    
-    <lastmod>2016-09-08T23:30:26.000Z</lastmod>
     
   </url>
   

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://woolfwen.com/"/>
-  <updated>2016-09-08T23:30:26.000Z</updated>
+  <updated>2017-02-21T01:56:05.000Z</updated>
   <id>http://woolfwen.com/</id>
   
   <author>
@@ -16,29 +16,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://woolfwen.com/2016/09/08/hello-world/"/>
-    <id>http://woolfwen.com/2016/09/08/hello-world/</id>
-    <published>2016-09-08T23:30:26.000Z</published>
-    <updated>2016-09-08T23:30:26.000Z</updated>
+    <title>Django CBV vs FBV</title>
+    <link href="http://woolfwen.com/2016/09/20/Django-CBV-vs-FBV/"/>
+    <id>http://woolfwen.com/2016/09/20/Django-CBV-vs-FBV/</id>
+    <published>2016-09-20T18:51:55.000Z</published>
+    <updated>2017-02-21T01:56:05.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<p>最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。<br><a id="more"></a></p>
+<p>##FBV</p>
+<p>views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.views.decorators.http <span class="keyword">import</span> require_GET</div><div class="line"></div><div class="line"><span class="meta">@require_GET</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world."</span>)</div></pre></td></tr></table></figure>
+<p>urls.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">    url(<span class="string">r'^/'</span>, views.index, name=<span class="string">'home'</span>),</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>以上就是Django中最简单，最朴素的一个 基于Function 的 view实现。逻辑清晰、简单、直接，在urls的设置中直接指明访问<a href="http://ip/" target="_blank" rel="external">http://ip/</a> 时，调用views.index Function去处理请求。这种方式，从认知、学习过程来说也是最容易理解的(Django Tutorial 主打的也是 FBV )，而且，Django 1.3 ver 前，Django 缺省提供的 Generic View 全部都是 FBV。也就是说，之前官方还是觉得FBV比较好。然而，Django 设计目标是奔着做“大”工程去的，也的确有很多Django实现的大工程。工程规模大了以后，设计自然而然就又使用上OOD了，虽然没有银弹，但是OOD还是能降低复杂度，提高代码复用性和后期维护性。Django也顺应潮流将Generic View更换成了CBV。</p>
+<p>##CBV</p>
+<p>来看看 CBV的 hello </p>
+<p>views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyView</span><span class="params">(View)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="comment"># &lt;view logic&gt;</span></div><div class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'result'</span>)</div></pre></td></tr></table></figure>
+<p>urls.py</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">    url(<span class="string">r'^/'</span>, views.MyView.as_view(), name=<span class="string">'home'</span>),</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>CBV过程可以看成是FBV过程的抽象化、对象化。他需要最基本的三个类View，ContextMixin，TemplateResponseMixin</p>
+<p>对应FBV的三个步骤：</p>
+<p>step1. View类提供类方法as_view(),用于调用dipatch()，根据request类型分发给get，post…等对应方法处理。</p>
+<p><a href="https://github.com/brack3t/django-braces" target="_blank" rel="external">https://github.com/brack3t/django-braces</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。&lt;br&gt;
     
     </summary>
     
+      <category term="Django" scheme="http://woolfwen.com/categories/Django/"/>
+    
+    
+      <category term="Django" scheme="http://woolfwen.com/tags/Django/"/>
+    
+      <category term="Python" scheme="http://woolfwen.com/tags/Python/"/>
+    
+      <category term="CBV" scheme="http://woolfwen.com/tags/CBV/"/>
+    
+      <category term="FBV" scheme="http://woolfwen.com/tags/FBV/"/>
     
   </entry>
   
