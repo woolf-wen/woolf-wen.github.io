@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>视频在线播放-For Xiaoxiao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="vip视频在线解析,爱奇艺视频解析,优酷视频解析网站" />
+    <meta name="description" content="vip视频在线解析，腾迅VIP电影,爱奇艺VIP电影,优酷VIP视频" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/newcommons.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    body {
+        background: url("img/bg.gif") no-repeat center top fixed;
+        margin-top: 0px;
+        font-family: 'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1'
+    }
+    
+    .body {
+        margin-top: 60px;
+        position: relative
+    }
+    
+    .bg_c {
+        height: 168px;
+        background: url(img/cover.png) center bottom no-repeat
+    }
+    
+    .bg_f {
+        height: 200px;
+        background: #fff
+    }
+    
+    .head,.body {
+        -ms-transition: background 1s linear;
+        -o-transition: background 1s linear;
+        -moz-transition: background 1s linear;
+        -webkit-transition: background 1s linear;
+        transition: background 1s linear
+    }
+    
+    
+    .lisContainer {
+        position: absolute;
+        width: 381px;
+        height: 59px;
+        top: 449px;
+        left: 589px;
+        text-align: center;
+        padding-top: 22px
+    }
+    
+    .li {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: url(img/lis.png) 0 0 no-repeat;
+        margin-right: 18px;
+        position: relative
+    }
+    
+    .li-gray {
+        margin-right: 0
+    }
+    
+    .li em {
+        width: 100%;
+        height: 100%;
+        background: url(img/t0154f6955a6485cd7f.png) 0 0 no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none
+    }
+    
+    .lisContainer .cur em {
+        display: block
+    }
+    
+    .li-green {
+        background-position: 0 0
+    }
+    
+    .li-blue {
+        background-position: -33px 0
+    }
+    
+    .li-pink {
+        background-position: -67px 0
+    }
+    
+    .li-yellow {
+        background-position: -101px 0
+    }
+    
+    .li-purple {
+        background-position: -134px 0
+    }
+    
+    .li-red {
+        background-position: -168px 0
+    }
+    
+    .li-gray {
+        background-position: -201px 0
+    }
+    
+    #url {
+        /*width: 600px;*/
+        height: 50px;
+        border-color: #54C754;
+        display: inline-block;
+        margin: 0px;
+    }
+    
+    #btn_play,#sj-btn, #btn-tips {
+        margin: 0px;
+        /*width: 160px;*/
+        height: 50px;
+        display: inline-block;
+    }
+    
+    .fromer {
+        text-align: center;
+        padding-top: 2px;
+    }
+    
+    #ercode {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #fff;
+        z-index: 99999999;
+    }
+    
+    #ercode p {
+        text-align: center;
+        font-size: 15px;
+        color: #000;
+        margin: 0;
+        height: 40px;
+        line-height: 40px;
+    }
+    
+    #mc {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, .7);
+        z-index: 9999;
+    }
+  </style>
+  <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body style="padding-bottom: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="height: 60px;">
+                <div style="border-radius: 0;" class="alert alert-warning" role="alert">
+                    <p style="text-align: center;">Just For My Friend...</p>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="margin-top: 8px;">
+              <div class="input-group" style="width: 100%;">
+                <input name="btn-tips" type="button" id="btn-tips" class="btn btn-block btn-xs btn-success input-lg" value="视频地址（Ctrl+v粘贴网址）:" />
+              </div>
+            </div>
+            <div class="col-md-6" style="margin-top: 8px;">
+              <div class="input-group" style="width: 100%;">
+                <input name="url" id="url" type="text" class="form-control input-lg" value="http://v.youku.com/v_show/id_XMTY1Njc5MTgwOA==.html" style="padding-top:4px;" />
+              </div>
+            </div>
+            <div class="col-md-2" style="margin-top: 8px;">
+              <div class="input-group" style="width: 100%;">    
+                  <input name="btn_play" type="button" id="btn_play" class="btn btn-block btn-lg btn-success" value="立即播放" />
+              </div>
+            </div>  
+            <div class="col-md-2" style="margin-top: 8px;">
+              <div class="input-group" style="width: 100%;">     
+                  <button id="sj-btn" type="button" class="btn btn-warning btn-lg">在手机观看</button>
+              </div>
+            </div>
+
+            <br />
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-12">
+            <div id="ckvip" style="position:relative;z-index:1000">
+                <iframe border="0" id="vplay" name="vplay" src="video.html" style="background-color: #000;" width="100%" height="550px" allowTransparency="true" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <p>
+                <font color="#033 ">目前完美支持的网址：乐视视频网址、奇艺视频网址、芒果视频网址、土豆视频网址、优酷视频网址等。</font>
+            </p>
+            <p><b><font color="#039 ">如果显示不能播放，请按F5(CMD + R)多刷新几次就可以了！</font></b></p>
+            <p>
+                <font color="#033 ">点击下面 ☟ 视频图标,可进入会员视频地址 </font>
+            </p>
+            <div id="ckplays "></div>
+          </div>
+        </div>
+
+        <div class="row"> 
+          <div class="logos_lists" style="margin-left:10px; ">
+              <dl>
+                  <a target="_blank " href="http://vip.iqiyi.com/?fc=b4df9faa4b31aec4 "><img src="img/aqylogo.png " alt=" " /></a>
+                  <dd>
+                      爱奇艺视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://film.qq.com/ "><img src="img/qqlogo.png " alt=" " /></a>
+                  <dd>
+                      腾讯视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://vip.youku.com/ "><img src="img/youkulogo.png " alt=" " /></a>
+                  <dd>
+                      优酷视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://vip.tudou.com/index.html "><img src="img/tudoulogo.png " alt=" " /></a>
+                  <dd>
+                      土豆视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.56.com/ "><img src="img/56logo.png " alt=" " /></a>
+                  <dd>
+                      56视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://movie.ku6.com/ "><img src="img/ku6logo.png " alt=" " /></a>
+                  <dd>
+                      酷6视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://yuanxian.le.com/?ref=ym0101 "><img src="img/letvlogo.png " alt=" " /></a>
+                  <dd>
+                      乐视TV视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.fun.tv/ "><img src="img/fxw.png " alt=" " /></a>
+                  <dd>
+                      风行网
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.mgtv.com/vip/ "><img src="img/hunantvlogo.png " alt=" " /></a>
+                  <dd>
+                      芒果TV视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://tv.sohu.com/ "><img src="img/sohulogo.png " alt=" " /></a>
+                  <dd>
+                      搜狐视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.pptv.com/ "><img src="img/pps.png " alt=" " /></a>
+                  <dd>
+                      PPTV
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.kankan.com/"><img src="img/xckk.png " alt=" " /></a>
+                  <dd>
+                      响巢看看
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.baofeng.com/ "><img src="img/bfyy.png " alt=" " /></a>
+                  <dd>
+                      暴风影音
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://vip.1905.com/?fr=homepc_menu_vip"><img src="img/m1905.png" alt=" " width="150 " height="50 " /></a>
+                  <dd>
+                      m1905电影网
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.yinyuetai.com/ "><img src="img/yinyuetailogo.png " alt=" " /></a>
+                  <dd>
+                      音悦台MV
+                  </dd>
+              </dl>
+          </div>
+        </div>
+
+        <br />
+        <br />
+    </div>
+    <script type="text/javascript ">
+    $("#btn_play").bind("click ", function() {
+        players()
+    });
+
+    function players() {
+        var a = $('#url').val();
+        if ($('#url').val().trim() == "") {
+            alert('不告诉我，我怎么知道呢？老铁，请输入视频的地址！');
+            $('#url').focus();
+            return (false)
+        }
+        document.getElementById("vplay").src = "https://api.47ks.com/webcloud/?v=" + a;
+
+    }
+
+    function players2() {
+        var a = $('#url').val();
+        if ($('#url').val() == " ") {
+            alert('请输入视频网站网址！');
+            $('#url').focus();
+            return (false)
+        }
+        var b = {
+            f: 'https://api.47ks.com/webcloud/?v=' + a,
+            c: 0,
+            s: 2,
+            p: 1,
+            b: 1,
+        };
+        var c = {
+            bgcolor: '#FFF',
+            allowFullScreen: true,
+            allowScriptAccess: 'always',
+            wmode: 'transparent'
+        };
+        var d = ['https://api.47ks.com/webcloud/?v=' + a + '&mobile'];
+        var e = ['iPad', 'iPhone', 'ios', 'android+false', 'msie10+false'];
+        CKobject.embed('player/player.swf', 'ckplays', 'ckplayer_mains', '100%', '500', false, b, d, c)
+    }
+
+    function addhtml52() {
+        if (CKobject.isHTML5()) {
+            support = ['all'];
+            CKobject._K_('moveid').innerHTML = '';
+            CKobject.embedHTML5('moveid', 'ckplayer_a1', '100%', 530, video, flashvars, support)
+        } else {
+            addflash()
+        }
+    }
+    </script>
+
+    <div id="mc"></div>
+    <div id="ercode">
+        <p>手机浏览器扫描二维码</p>
+    </div>
+    <script src="js/qr.js"></script>
+    <script>
+    if ($(window).width() < 768) {
+        var ifr = $('iframe');
+        var btnTips = $('#btn-tips');
+        var sjBtn = $('#sj-btn');
+        ifr.height('300px');
+        sjBtn.hide();
+        btnTips.hide();
+    }(function() {
+        // mobile R code
+        var qrcode = new QRCode(document.getElementById("ercode"), {
+            width: 250,
+            height: 250
+        });
+        $('#sj-btn').on('click', function() {
+            if ($('#url').val() == '') {
+                alert('未填入视频链接，请先填入视频链接！')
+            } else {
+                $('#mc').show();
+                $('#ercode').show();
+                var curSjUrl = 'http://woolfwen.com/vip_video/index.html?url=' + $('#url').val();
+                qrcode.makeCode(curSjUrl)
+            }
+        });
+        $('#mc').on('click', function() {
+            $('#mc').hide();
+            $('#ercode').hide()
+        });
+
+        // handl mobile device load
+        function pageLoaded() {
+            var qAt = document.URL.indexOf("?");
+            if (qAt != -1) {
+                var params = document.URL.substr(qAt + 1 + 4);
+                // Use params as needed (parse, or pass along to flash swf): 
+                $("#url").val(params);
+                players();
+            }
+        }
+
+        pageLoaded();
+
+    })();
+    </script>
+    <p>
+        <font color="#033">Copyright &copy; 2016-2017 &reg; 版权所有</font>
+    </p>
+</body>
+
+</html>
