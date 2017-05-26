@@ -202,7 +202,7 @@
                 <iframe border="0" id="vplay" name="vplay" src="video.html" style="background-color: #000;" width="100%" height="550px" allowTransparency="true" frameborder="0" scrolling="no"></iframe>
             </div>
             <p>
-                <font color="#033 ">目前完美支持的网址：乐视视频网址、奇艺视频网址、芒果视频网址、土豆视频网址、优酷视频网址等。</font>
+                <font color="#033 ">目前完美支持：优酷视频网址、腾讯视频网址、奇艺视频网址、芒果视频网址、乐视视频网址等。</font>
             </p>
             <p><b><font color="#039 ">如果显示不能播放，请按F5(CMD + R)多刷新几次就可以了！</font></b></p>
             <p>
@@ -214,6 +214,18 @@
 
         <div class="row"> 
           <div class="logos_lists" style="margin-left:10px; ">
+              <dl>
+                  <a target="_blank " href="http://vip.youku.com/ "><img src="img/youkulogo.png " alt=" " /></a>
+                  <dd>
+                      优酷视频
+                  </dd>
+              </dl>
+              <dl>
+                  <a target="_blank " href="http://www.mgtv.com/vip/ "><img src="img/hunantvlogo.png " alt=" " /></a>
+                  <dd>
+                      芒果TV视频
+                  </dd>
+              </dl>
               <dl>
                   <a target="_blank " href="http://vip.iqiyi.com/?fc=b4df9faa4b31aec4 "><img src="img/aqylogo.png " alt=" " /></a>
                   <dd>
@@ -227,60 +239,44 @@
                   </dd>
               </dl>
               <dl>
-                  <a target="_blank " href="http://vip.youku.com/ "><img src="img/youkulogo.png " alt=" " /></a>
-                  <dd>
-                      优酷视频
-                  </dd>
-              </dl>
-              <dl>
-                  <a target="_blank " href="http://vip.tudou.com/index.html "><img src="img/tudoulogo.png " alt=" " /></a>
-                  <dd>
-                      土豆视频
-                  </dd>
-              </dl>
-              <dl>
-                  <a target="_blank " href="http://www.56.com/ "><img src="img/56logo.png " alt=" " /></a>
-                  <dd>
-                      56视频
-                  </dd>
-              </dl>
-              <dl>
-                  <a target="_blank " href="http://movie.ku6.com/ "><img src="img/ku6logo.png " alt=" " /></a>
-                  <dd>
-                      酷6视频
-                  </dd>
-              </dl>
-              <dl>
                   <a target="_blank " href="http://yuanxian.le.com/?ref=ym0101 "><img src="img/letvlogo.png " alt=" " /></a>
                   <dd>
                       乐视TV视频
                   </dd>
               </dl>
+<!--               <dl>
+                  <a target="_blank " href="http://www.56.com/ "><img src="img/56logo.png " alt=" " /></a>
+                  <dd>
+                      56视频
+                  </dd>
+              </dl> -->
+<!--               <dl>
+                  <a target="_blank " href="http://movie.ku6.com/ "><img src="img/ku6logo.png " alt=" " /></a>
+                  <dd>
+                      酷6视频
+                  </dd>
+              </dl> 
               <dl>
                   <a target="_blank " href="http://www.fun.tv/ "><img src="img/fxw.png " alt=" " /></a>
                   <dd>
                       风行网
                   </dd>
-              </dl>
+              </dl> -->
+
               <dl>
-                  <a target="_blank " href="http://www.mgtv.com/vip/ "><img src="img/hunantvlogo.png " alt=" " /></a>
-                  <dd>
-                      芒果TV视频
-                  </dd>
-              </dl>
-              <dl>
-                  <a target="_blank " href="http://tv.sohu.com/ "><img src="img/sohulogo.png " alt=" " /></a>
+                  <a target="_blank " href="http://film.sohu.com/vip.html"><img src="img/sohulogo.png " alt=" " /></a>
                   <dd>
                       搜狐视频
                   </dd>
               </dl>
+<!--              
               <dl>
                   <a target="_blank " href="http://www.pptv.com/ "><img src="img/pps.png " alt=" " /></a>
                   <dd>
                       PPTV
                   </dd>
               </dl>
-              <dl>
+               <dl>
                   <a target="_blank " href="http://www.kankan.com/"><img src="img/xckk.png " alt=" " /></a>
                   <dd>
                       响巢看看
@@ -298,12 +294,12 @@
                       m1905电影网
                   </dd>
               </dl>
-              <dl>
+               <dl>
                   <a target="_blank " href="http://www.yinyuetai.com/ "><img src="img/yinyuetailogo.png " alt=" " /></a>
                   <dd>
                       音悦台MV
                   </dd>
-              </dl>
+              </dl> -->
           </div>
         </div>
 
@@ -323,7 +319,7 @@
             return (false)
         }
         document.getElementById("vplay").src = "https://api.47ks.com/webcloud/?v=" + a;
-        // document.getElementById("vplay").src = "video.html?v=" + a;
+        // document.getElementById("vplay").src = "http://api.nepian.com/ckparse/?url=" + a;
     }
 
     var iframe = document.getElementById("vplay");
@@ -388,7 +384,7 @@
         ifr.height('300px');
         sjBtn.hide();
         btnTips.hide();
-        
+
         $("#url").on("change paste keyup", function() {
           $('#btn_play').attr('value', '立刻播放');
         });
