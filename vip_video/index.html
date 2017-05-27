@@ -311,6 +311,12 @@
         players()
     });
 
+    $("#url").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#btn_play").click();
+        }
+    });
+
     function players() {
         var a = $('#url').val();
         if ($('#url').val().trim() == "") {
