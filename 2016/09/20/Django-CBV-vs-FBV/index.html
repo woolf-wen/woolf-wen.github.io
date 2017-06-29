@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://woolfwen.com/2016/09/20/Django-CBV-vs-FBV/index.html">
 <meta property="og:site_name" content="浮生若梦">
 <meta property="og:description" content="最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。">
-<meta property="og:updated_time" content="2017-02-21T01:56:05.000Z">
+<meta property="og:updated_time" content="2017-05-27T16:43:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django CBV vs FBV">
 <meta name="twitter:description" content="最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。">
@@ -330,8 +330,7 @@
       
 
       
-        <p>最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。<br><a id="more"></a></p>
-<p>##FBV</p>
+        <p>最近，有朋友问我在Django中CBV(Class Based View) 和 FBV(Function Based View) 究竟哪个更好。咋一问，我也愣了一下，好像自己在项目中都在用，哪有好坏之分。为此，再次细细的比较品味了这两种模式，总结一下，备忘。<br><a id="more"></a><br><strong>FBV</strong></p>
 <p>views.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.views.decorators.http <span class="keyword">import</span> require_GET</div><div class="line"></div><div class="line"><span class="meta">@require_GET</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world."</span>)</div></pre></td></tr></table></figure>
 <p>urls.py</p>
