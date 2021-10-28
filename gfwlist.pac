@@ -11,6 +11,7 @@ var rules = [
         // added by woolf
         [
             "tradingview.com",
+            "coinbase.com",
             "bitmex.com",
             "huobipro.com",
             "hbg.com",
