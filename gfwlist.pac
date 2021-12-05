@@ -17,6 +17,7 @@ var rules = [
             "hbg.com",
             "1t.click",
             // "binance.com",
+            "qkl123.com",
         ]
     ],
     [
