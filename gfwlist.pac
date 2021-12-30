@@ -7,17 +7,20 @@ var proxy = 'SOCKS5 127.0.0.1:1080;SOCKS 127.0.0.1:1080';
 var rules = [
     [
         // whitelist
-        [],
-        // added by woolf
         [
-            "tradingview.com",
-            "coinbase.com",
+            "bing.com",
+        ],
+        // by proxy
+        [
+            // my added node
             "bitmex.com",
+            // "binance.com",
             "huobipro.com",
             "hbg.com",
             "1t.click",
-            // "binance.com",
+            "tradingview.com",
             "qkl123.com",
+            "awesomeopensource.com",
         ]
     ],
     [
@@ -1886,10 +1889,11 @@ var rules = [
             "girlbanker.com",
             "git.io",
             "gitbooks.io",
-            //"github.com",
-            "github.io",
-            "githubassets.com",
-            "githubusercontent.com",
+            // "github.com",
+            // "github.io",
+            // "githubassets.com",
+            // "githubusercontent.com",
+            "rawgithub.com",
             "gizlen.net",
             "gjczz.com",
             "glass8.eu",
@@ -3962,7 +3966,6 @@ var rules = [
             "raremovie.cc",
             "raremovie.net",
             "rawgit.com",
-            "rawgithub.com",
             "raxcdn.com",
             "razyboard.com",
             "rcinet.ca",
