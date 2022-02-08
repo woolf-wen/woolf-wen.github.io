@@ -14,6 +14,7 @@ var rules = [
         [
             // my added node
             "bitmex.com",
+            "coinbase.com",
             // "binance.com",
             "huobipro.com",
             "hbg.com",
@@ -21,6 +22,16 @@ var rules = [
             "tradingview.com",
             "qkl123.com",
             "awesomeopensource.com",
+            "ethdev.com",
+            "metamask.io",
+            "cloudflare.com",
+            "wikimedia.org",
+            "etherscan.io",
+            "rinkeby.etherscan.io",
+            "ropsten.etherscan.io",
+            "rinkeby.io",
+            "rinkeby.infura.io",
+            "www.recaptcha.net",
         ]
     ],
     [
